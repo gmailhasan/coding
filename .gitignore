@@ -1,0 +1,25 @@
+# npm
+node_modules/
+npm-debug.log
+package-lock.json
+yarn.lock
+dist/
+build/
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+ENV/
+*.egg-info/
+dist/
+build/
+.pytest_cache/
+.coverage
+.env
+
+.claude

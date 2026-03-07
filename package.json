@@ -1,0 +1,19 @@
+{
+  "name": "interview-prep-js",
+  "version": "1.0.0",
+  "description": "Coding interview practice — 14 patterns (JavaScript)",
+  "scripts": {
+    "practice": "node run_js.js",
+    "test": "jest"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0"
+  },
+  "jest": {
+    "testEnvironment": "node",
+    "verbose": true,
+    "testMatch": [
+      "**/patterns/**/*.test.js"
+    ]
+  }
+}
