@@ -35,8 +35,59 @@
  * @returns {boolean}
  */
 function canFinish(numCourses, prerequisites) {
-  // TODO: implement using BFS (Kahn's) or DFS cycle detection
-  throw new Error('Not implemented');
+  // create a graph  with adjacency list from prerequisites
+  // count = 0
+  // calculate indegree for nodes
+  // for all indegree=0, add them in queue
+  // do bfs with starting nodes
+  // decrement indegree for neighbors and when a indegree becomes 0, add to queue
+  // count++
+
+  // check if we have count == numCourses
+  let graph = new Map();
+  let output = [];
+  let indegree = new Array(numCourses).fill(0);
+  for (let i = 0; i < prerequisites.length; i++) {
+    let [c, p] = prerequisites[i];
+    if (!graph.has(p)) {
+      graph.set(p, []);
+    }
+    graph.get(p).push(c);
+    indegree[c]++;
+  }
+
+  let queue = [];
+  let count = 0;
+  for (let i = 0; i < indegree.length; i++) {
+    if (indegree[i] == 0) {
+      queue.push(i);
+      output.push(i);
+      count++;
+    }
+  }
+
+  while (queue.length > 0) {
+    const curLen = queue.length;
+    for (i = 0; i < curLen; i++) {
+      const courseIdx = queue.shift();
+      const allChildCourse = graph.get(courseIdx);
+      for (c of allChildCourse ?? []) {
+        indegree[c]--;
+        if (indegree[c] == 0) {
+          output.push(c);
+          count++;
+          queue.push(c);
+        }
+      }
+    }
+  }
+  return count === numCourses;
 }
 
+canFinish(4, [
+  [1, 0],
+  [2, 0],
+  [3, 1],
+  [3, 2],
+]);
 module.exports = { canFinish };
